@@ -247,7 +247,7 @@
                 <span class="input-group-btn">
                 <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                 </span></div>
-            </div>
+              </div>
             {% endif %}
             {% endfor %}
             {% endif %}
@@ -270,17 +270,19 @@
                 <input type="number" name="quantity" value="{{ minimum }}" size="2" id="input-quantity" class="form-control qty-input" step="{{ minimum }}" style="width: 72px;" min="{{ minimum }}"/>
                 <button type="button" id="button-cart" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block">{{ button_cart }}</button>
               </div>
-              {% if buynow %}
-                <button type="button" id="buynow" data-loading-text="{{ text_loading }}" class="btn btn-primary "><a href="./index.php?route=checkout/checkout" class="checkout" style="color: white;">Buy Now</a></button>
-              {% endif %}  
+              <div class="secondary-buttons">
+                  {% if buynow %}
+                    <button type="button" id="buynow" data-loading-text="{{ text_loading }}" class="btn btn-primary "><a href="./index.php?route=checkout/checkout" class="checkout" style="color: white;">Buy Now</a></button>
+                  {% endif %}  
 
-				      {% if bestprice %}
-				        <button type="button" id="bestprice" data-loading-text="{{ text_loading }}" class="btn btn-primary " data-toggle="modal" data-target="#my-awesome-popup-1">Get Best Price</button>
-				      {% endif %} 
+                  {% if bestprice %}
+                    <button type="button" id="bestprice" data-loading-text="{{ text_loading }}" class="btn btn-primary " data-toggle="modal" data-target="#my-awesome-popup-1">Get Best Price</button>
+                  {% endif %} 
 
-              {% if holesaleprice %}				  
-				        <button type="button" id="holesaleprice" data-loading-text="{{ text_loading }}" class="btn btn-primary " data-toggle="modal" data-target="#my-awesome-popup-2">Get Wholesale Price</button>
-			        {% endif %} 
+                  {% if holesaleprice %}				  
+                    <button type="button" id="holesaleprice" data-loading-text="{{ text_loading }}" class="btn btn-primary " data-toggle="modal" data-target="#my-awesome-popup-2">Get Wholesale Price</button>
+                  {% endif %} 
+              </div>
 			        <span class="or-textbtn">  - OR -  </span>
               <div class="btn-group  wishlist-btns">
                 <button type="button" class="btn btn-default wishlist" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product_id }}');">{{ button_wishlist }}</button>
@@ -440,29 +442,14 @@
                           <div class="form-group required">
                             <div class="col-sm-12">
                               <h4 class="control-label">{{ entry_rating }}</h4>
-                              <div class="star-rating-custom">
-                                &nbsp;&nbsp;&nbsp; {{ entry_bad }}&nbsp;
-                                <span class="">
-                                  <input type="radio" name="rating" value="1" />
-                                  <i class="fa fa-star"></i>
-                                </span>
-                                <span class="">
-                                  <input type="radio" name="rating" value="2" />
-                                  <i class="fa fa-star"></i>
-                                </span>
-                                <span class="">
-                                  <input type="radio" name="rating" value="3" />
-                                  <i class="fa fa-star"></i>
-                                </span>
-                                <span class="">
-                                  <input type="radio" name="rating" value="4" />
-                                  <i class="fa fa-star"></i>
-                                </span>
-                                <span class="">
-                                  <input type="radio" name="rating" value="5" />
-                                  <i class="fa fa-star"></i>
-                                </span>
-                                &nbsp;{{ entry_good }}
+                              <div class="star-rating">
+                                <fieldset>
+                                  <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Outstanding">5 stars</label>
+                                  <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Very Good">4 stars</label>
+                                  <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Good">3 stars</label>
+                                  <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Poor">2 stars</label>
+                                  <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very Poor">1 star</label>
+                                </fieldset>
                               </div>
                             </div>
                           </div>
@@ -552,12 +539,12 @@
                       </div>
                       {% endif %}
 
-                      <div class="button-group">
-								<button type="button"  data-placement="right" title="Add to cart" class="addtocart" onclick="cart.add('{{ product.product_id }} ');">{{ button_cart }}</button> 
-								<div class="quickview" data-placement="right" title="Quickview" ><a href="{{ product.quick }}">Quick View </a></div>
-								<button class="wishlist" type="button" data-placement="right" title="{{ button_wishlist }} " onclick="wishlist.add('{{ product.product_id }} ');"></button>
-								<button class="compare" type="button"  data-placement="right" title="{{ button_compare }} " onclick="compare.add('{{ product.product_id }} ');"></button>
-                      </div>
+                    <div class="button-group">
+                        <button type="button"  data-placement="right" title="Add to cart" class="addtocart" onclick="cart.add('{{ product.product_id }} ');">{{ button_cart }}</button> 
+                        <div class="quickview" data-placement="right" title="Quickview" ><a href="{{ product.quick }}">Quick View </a></div>
+                        <button class="wishlist" type="button" data-placement="right" title="{{ button_wishlist }} " onclick="wishlist.add('{{ product.product_id }} ');"></button>
+                        <button class="compare" type="button"  data-placement="right" title="{{ button_compare }} " onclick="compare.add('{{ product.product_id }} ');"></button>
+                    </div>
 
 					      </div>
 						
@@ -640,7 +627,7 @@
 
 
 <!-- Get Best Price-->
-<div id="my-awesome-popup-1" class="modal" tabindex="-1" role="dialog">
+    <div id="my-awesome-popup-1" class="modal" tabindex="-1" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -648,42 +635,42 @@
             <h4 class="modal-title">GET BEST PRICE</h4>
           </div>
           <div class="modal-body">
-		  
-          <form action="index.php?route=product/product/bestprice" name="bestprice" method="post">
-  <div class="form-group">
-    <label for="b_name">Name:</label>
-    <input type="text" class="form-control" placeholder="Enter Name" id="b_name" name="b_name">
-	<div class="b_name"></div>
-  </div>
-  <div class="form-group">
-    <label for="emailid">Email-ID:</label>
-    <input type="text" class="form-control" placeholder="Enter Email-ID" id="b_emailid" name="b_emailid">
-  </div>
-   <div class="form-group">
-    <label for="contactno">Contact No</label>
-    <input type="text" class="form-control" placeholder="Enter Contact No" id="b_contactno" name="b_contactno">
-  </div>
+            <div class="row">
+              <div class="col-md-5 col-sm-12 text-center">
+                <img src="image/best-price.png" width=""/>
+              </div>
+              <div class="col-md-7 col-sm-12">
+                <form action="index.php?route=product/product/bestprice" name="bestprice" method="post">
+                  <div class="form-group">
+                    <label for="b_name">Name:</label>
+                    <input type="text" class="form-control" placeholder="Enter Name" id="b_name" name="b_name">
+                    <div class="b_name"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="emailid">Email-ID:</label>
+                    <input type="text" class="form-control" placeholder="Enter Email-ID" id="b_emailid" name="b_emailid">
+                  </div>
 
- 
-   
-   
-    <div class="form-group">
-    <label for="productname">Product Name</label>
-    <input type="text" class="form-control" id="bb_productname" name="b_productname" value="{{product_name}}" readonly>
-  </div>
-   
-  
-  <input type="hidden" name="product_id" id="product_id" value="{{product_id}}">
- 
-  <button type="submit" class="btn btn-primary bestprice">Send Enquiry</button>
-</form>
+                  <div class="form-group">
+                    <label for="contactno">Contact No</label>
+                    <input type="text" class="form-control" placeholder="Enter Contact No" id="b_contactno" name="b_contactno">
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="productname">Product Name</label>
+                    <input type="text" class="form-control" id="bb_productname" name="b_productname" value="{{product_name}}" readonly>
+                  </div>
 
-
+                  <input type="hidden" name="product_id" id="product_id" value="{{product_id}}">
+                  <button type="submit" class="btn btn-primary bestprice">Send Enquiry</button>
+                </form>
+              </div>
+            </div>
           </div>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 	
 	  <!-- Get Best Price-->
 	
@@ -692,65 +679,66 @@
 	
 	
 
-<!-- Get Hole Sale Price-->
-<div id="my-awesome-popup-2" class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
+  <!-- Get Hole Sale Price-->
+  <div id="my-awesome-popup-2" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">GET WHOLESALE PRICE</h4>
           </div>
           <div class="modal-body">
-		  
-          <form action="index.php?route=product/product/holebestprice" name="holebestprice" method="post">
-  <div class="form-group">
-    <label for="b_name">Name:</label>
-    <input type="text" class="form-control" placeholder="Enter Name" id="b_name" name="b_name">
-	<div class="b_name"></div>
-  </div>
-  <div class="form-group">
-    <label for="emailid">Email-ID:</label>
-    <input type="text" class="form-control" placeholder="Enter Email-ID" id="b_emailid" name="b_emailid">
-  </div>
-   <div class="form-group">
-    <label for="contactno">Contact No</label>
-    <input type="text" class="form-control" placeholder="Enter Contact No" id="b_contactno" name="b_contactno">
-  </div>
+            <div class="row  wholesale-price-modal">
+              <div class="col-md-5 col-sm-12">
+                <img src="image/wholesale-price.png" width="100%"/>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <form action="index.php?route=product/product/holebestprice" name="holebestprice" method="post">
+                  <div class="form-group">
+                    <label for="b_name">Name:</label>
+                    <input type="text" class="form-control" placeholder="Enter Name" id="b_name" name="b_name">
+                    <div class="b_name"></div>
+                  </div>
 
- <div class="form-group">
-    <label for="contactno">Quantity</label>
-    <input type="text" class="form-control" placeholder="Enter Quantity" id="b_quantity" name="b_quantity">
-  </div>
+                  <div class="form-group">
+                    <label for="emailid">Email-ID:</label>
+                    <input type="text" class="form-control" placeholder="Enter Email-ID" id="b_emailid" name="b_emailid">
+                  </div>
 
- <div class="form-group">
-    <label for="contactno">Units</label>
-    <select name="units" class="form-control" id="units">
-	 {% for datas in units %}
-	 <option value="{{datas.weight_class_id}}">{{datas.title}} {% if datas.weight_class_id %}({{datas.unit}}) {% endif %}</option>
-	 {% endfor %}
-	</select>
-  </div>
+                  <div class="form-group">
+                    <label for="contactno">Contact No</label>
+                    <input type="text" class="form-control" placeholder="Enter Contact No" id="b_contactno" name="b_contactno">
+                  </div>
 
+                  <div class="form-group">
+                    <label for="contactno">Quantity</label>
+                    <input type="text" class="form-control" placeholder="Enter Quantity" id="b_quantity" name="b_quantity">
+                  </div>
 
+                  <div class="form-group">
+                    <label for="contactno">Units</label>
+                    <select name="units" class="form-control" id="units">
+                      {% for datas in units %}
+                      <option value="{{datas.weight_class_id}}">{{datas.title}} {% if datas.weight_class_id %}({{datas.unit}}) {% endif %}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
 
-   
-    <div class="form-group">
-    <label for="productname">Product Name</label>
-    <input type="text" class="form-control" id="bb_productname" name="b_productname" value="{{product_name}}" readonly>
-  </div>
-   
-  
-  <input type="hidden" name="product_id" id="product_id" value="{{product_id}}">
- 
-  <button type="submit" class="btn btn-primary holebestprice">Send Enquiry</button>
-</form>
-
-
+                  <div class="form-group">
+                    <label for="productname">Product Name</label>
+                    <input type="text" class="form-control" id="bb_productname" name="b_productname" value="{{product_name}}" readonly>
+                  </div>
+                  
+                  <input type="hidden" name="product_id" id="product_id" value="{{product_id}}">
+                  <button type="submit" class="btn btn-primary holebestprice">Send Enquiry</button>
+                </form>
+              </div>
+            </div>
           </div>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 	
 <!-- Get Hole Sale Price-->
 	

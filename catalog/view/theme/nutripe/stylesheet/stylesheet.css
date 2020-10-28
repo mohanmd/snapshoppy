@@ -9990,6 +9990,9 @@ h2.price {
     background: #fff;
     color: #cc362e;
 }
+.wishlist-btns button:hover {
+	border-color: #000;
+}
 .ask-question-btn > .btn{
 	background-color: #ffffff;
 	display: block;
@@ -10021,4 +10024,77 @@ h2.price {
 }
 .star-rating-custom i {
     font-size: 21px;
+}
+/* ########
+
+######### */
+.star-rating {
+	font-family: "FontAwesome";
+	margin-top: 11px;
+}
+.star-rating > fieldset {
+	border: none;
+	display: inline-block;
+}
+.star-rating > fieldset:not(:checked) > input {
+	position: absolute;
+	top: -9999px;
+	clip: rect(0, 0, 0, 0);
+}
+.star-rating > fieldset:not(:checked) > label {
+    float: right;
+    width: 1em;
+    padding: 0 0.05em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 200%;
+    color: #FFC107;
+    margin-right: 10px;
+}
+
+.star-rating > fieldset:not(:checked) > label:before {
+	content: "\f006  ";
+}
+.star-rating > fieldset:not(:checked) > label:hover,
+.star-rating > fieldset:not(:checked) > label:hover ~ label {
+	color: #ffb712;
+    text-shadow: 0 0 3px #ffecc9;
+}
+.star-rating > fieldset:not(:checked) > label:hover:before,
+.star-rating > fieldset:not(:checked) > label:hover ~ label:before {
+	content: "\f005  ";
+}
+.star-rating > fieldset > input:checked ~ label:before {
+	content: "\f005  ";
+}
+.star-rating > fieldset > label:active {
+	position: relative;
+	top: 2px;
+}
+
+  
+.secondary-buttons > button {
+    font-size: 12px;
+    padding: 7px 10px;
+    text-transform: capitalize;
+    background-color: #444;
+    width: 100%;
+    margin-right: 5px;
+}
+.secondary-buttons{
+	display: flex;
+    text-align: right;
+    width: 73%;
+    margin-left: auto;
+    margin-bottom: 5px;
+}
+.secondary-buttons > button:not(:last-child){
+    margin-right: 9px;
+}
+
+.wholesale-price-modal{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
 }
